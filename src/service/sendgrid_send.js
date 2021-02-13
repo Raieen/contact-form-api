@@ -1,3 +1,11 @@
+/**
+ * Send email
+ * @param {String} fromEmail Form sender email
+ * @param {String} fromName Form sender's name
+ * @param {String} subject Email Subject
+ * @param {String} toEmail Where the email should be sent to
+ * @param {String} message Plain text email contents
+ */
 export async function sendEmail (fromEmail, fromName, subject, toEmail, message) {
   // eslint-disable-next-line no-undef
   const res = await fetch(new Request(sendgridUrl, {
