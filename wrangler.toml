@@ -1,0 +1,10 @@
+name = "contact-form-api"
+type = "webpack"
+webpack_config = "webpack.config.js"
+
+account_id = "${{ secrets.CF_ACCOUNT_ID }}"
+workers_dev = true
+route = ""
+zone_id = ""
+
+vars = { messageMinimumLength = "30", version = "0.0.0", captchaVerifyUrl = "https://hcaptcha.com/siteverify", sendgridUrl = "https://api.sendgrid.com/v3/mail/send" }
