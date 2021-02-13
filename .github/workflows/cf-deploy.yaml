@@ -20,7 +20,6 @@ jobs:
               captchaVerifyUrl
               captchaSecret
               captchaSiteKey
-              sendgridUrl
               sendgridKey
         env:
           sentryProjectId: ${{ secrets.SENTRYPROJECTID }}
@@ -28,5 +27,4 @@ jobs:
           toEmail: ${{ secrets.TOEMAIL }}
           captchaSecret: ${{ secrets.captchaSecret }}
           captchaSiteKey: ${{ secrets.captchaSiteKey }}
-          sendgridUrl: ${{ secrets.sendgridUrl }}
           sendgridKey: ${{ secrets.sendgridKey }}
