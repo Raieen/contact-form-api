@@ -35,34 +35,6 @@ export async function sendEmail (fromEmail, fromName, subject, toEmail, message)
     })
   }))
 
-  console.log(JSON.stringify({
-    personalizations: [
-      {
-        to: [
-          {
-            email: toEmail
-          }
-        ],
-        subject: subject
-      }
-    ],
-    content: [
-      {
-        type: 'text/plain',
-        value: message
-      }
-    ],
-    from: {
-      email: fromEmail,
-      name: fromName
-    },
-    reply_to: {
-      email: fromEmail,
-      name: fromName
-    }
-  }))
-
-  console.log(res.status)
   if (res.status !== 202) {
     throw JSON.stringify(await res.json())
   }
