@@ -2,7 +2,7 @@ name = "contact-form-api"
 type = "webpack"
 webpack_config = "webpack.config.js"
 
-account_id = "123"
+account_id = "${{ secrets.CF_ACCOUNT_ID }}"
 workers_dev = true
 route = ""
 zone_id = ""

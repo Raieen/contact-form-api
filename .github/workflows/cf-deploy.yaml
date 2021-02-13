@@ -10,6 +10,11 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'skip-ci')"
     steps:
       - uses: actions/checkout@v2
+      - uses: jwsi/secret-parser@v1
+        with:
+          filename: wrangler.toml
+          secret-name: CF_ACCOUNT_ID
+          secret-value: ${{ secrets.CF_ACCOUNT_ID }}
       - uses: cloudflare/wrangler-action@1.2.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
