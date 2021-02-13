@@ -70,7 +70,8 @@ async function handleRequest (event) {
   }
 
   try {
-    await sendgrid.sendEmail(email, `${firstName} ${lastName}`, `Contact Us: ${type} ${message.substring(0, 16)}`, to_email, message)
+    const content = `Name: ${firstName} ${lastName} <${email}>\nMessage Type: ${type}\n\n${message}`
+    await sendgrid.sendEmail(email, `${firstName} ${lastName}`, `Contact Us: ${type}: ${message.substring(0, 24)}`, toEmail, content)
   } catch (error) {
     console.debug(error)
     event.waitUntil(logger.error(`Sendgrid error sending email\n${error}`))

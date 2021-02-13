@@ -12,48 +12,45 @@ function getEventId () {
   })
 }
 
-export async function logSentry (level, message) {
-  const jsonBody = JSON.stringify({
-    event_id: getEventId(),
-    timestamp: Date.now() / 1000,
-    tags: {
-      version: version,
-      environment: 'production',
-      level: level
-    },
-    message: message
-  })
+module.exports = {
+  logSentry: async (level, message) => {
+    const jsonBody = JSON.stringify({
+      event_id: getEventId(),
+      timestamp: Date.now() / 1000,
+      tags: {
+        version: version,
+        environment: 'production',
+        level: level
+      },
+      message: message
+    })
 
-  const res = await fetch(new Request(`https://sentry.io/api/${sentryProjectId}/store/`, {
-    method: 'POST',
-    headers: {
-      'X-Sentry-Auth': `Sentry sentry_version=7,sentry_key=${sentryKey},sentry_client=cf-worker-contract-form-api/${version}`,
-      'Content-Type': 'application/json'
-    },
-    body: jsonBody
-  }))
+    const res = await fetch(new Request(`https://sentry.io/api/${sentryProjectId}/store/`, {
+      method: 'POST',
+      headers: {
+        'X-Sentry-Auth': `Sentry sentry_version=7,sentry_key=${sentryKey},sentry_client=cf-worker-contract-form-api/${version}`,
+        'Content-Type': 'application/json'
+      },
+      body: jsonBody
+    }))
 
-  if (res.status !== 200) {
-    console.log('Failed to send log to Sentry')
+    if (res.status !== 200) {
+      console.log('Failed to send log to Sentry')
+    }
+  },
+  debug: async (message) => {
+    console.log(message)
+  },
+  info: async (message) => {
+    await module.exports.logSentry('info', message)
+  },
+  error: async (message) => {
+    await module.exports.logSentry('error', message)
+  },
+  warn: async (message) => {
+    await module.exports.logSentry('warn', message)
+  },
+  critical: async (message) => {
+    await module.exports.logSentry('critical', message)
   }
-}
-
-export async function debug (message) {
-  console.log(message)
-}
-
-export async function info (message) {
-  await module.exports.logSentry('info', message)
-}
-
-export async function error (message) {
-  await module.exports.logSentry('error', message)
-}
-
-export async function warn (message) {
-  await module.exports.logSentry('warn', message)
-}
-
-export async function critical (message) {
-  await module.exports.logSentry('critical', message)
 }
