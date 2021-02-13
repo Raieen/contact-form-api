@@ -2,28 +2,28 @@ name: Deploy
 
 on:
   push
-    # branches:
-    #   - master
+    branches:
+      - api
 jobs:
   deploy:
     steps:
-      uses: cloudflare/wrangler-action@1.2.0
-      with:
-        apiToken: ${{ secrets.CF_API_TOKEN }}
-        secrets: |
-            sentryProjectId
-            sentryKey
-            toEmail
-            captchaVerifyUrl
-            captchaSecret
-            captchaSiteKey
-            sendgridUrl
-            sendgridKey
-      env:
-        sentryProjectId: ${{ secrets.SENTRYPROJECTID }}
-        sentryKey: ${{ secrets.SENTRYKEY }}
-        toEmail: ${{ secrets.TOEMAIL }}
-        captchaSecret: ${{ secrets.captchaSecret }}
-        captchaSiteKey: ${{ secrets.captchaSiteKey }}
-        sendgridUrl: ${{ secrets.sendgridUrl }}
-        sendgridKey: ${{ secrets.sendgridKey }}
+      - uses: cloudflare/wrangler-action@1.2.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          secrets: |
+              sentryProjectId
+              sentryKey
+              toEmail
+              captchaVerifyUrl
+              captchaSecret
+              captchaSiteKey
+              sendgridUrl
+              sendgridKey
+        env:
+          sentryProjectId: ${{ secrets.SENTRYPROJECTID }}
+          sentryKey: ${{ secrets.SENTRYKEY }}
+          toEmail: ${{ secrets.TOEMAIL }}
+          captchaSecret: ${{ secrets.captchaSecret }}
+          captchaSiteKey: ${{ secrets.captchaSiteKey }}
+          sendgridUrl: ${{ secrets.sendgridUrl }}
+          sendgridKey: ${{ secrets.sendgridKey }}
