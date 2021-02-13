@@ -7,4 +7,4 @@ workers_dev = true
 route = ""
 zone_id = ""
 
-vars = { messageMinimumLength = "30", sentryProjectId = "123", sentryKey = "123", version = "0.0.0", toEmail = "example@example.com", captchaVerifyUrl = "https://hcaptcha.com/siteverify", captchaSecret = "0x0000000000000000000000000000000000000000", captchaSiteKey = "10000000-ffff-ffff-ffff-000000000001", sendgridUrl = "https://api.sendgrid.com/v3/mail/send", sendgridKey = "123"}
+vars = { messageMinimumLength = "30", version = "0.0.0", captchaVerifyUrl = "https://hcaptcha.com/siteverify", sendgridUrl = "https://api.sendgrid.com/v3/mail/send" }
