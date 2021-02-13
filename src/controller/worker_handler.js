@@ -13,6 +13,10 @@ addEventListener('fetch', event => {
  * @param {Event} event
  */
 async function handleRequest (event) {
+  if (event.request.method !== 'POST') {
+    return new Response(null, { status: 405 })
+  }
+
   const jsonBody = await event.request.json()
 
   if (!jsonBody) {
@@ -74,7 +78,7 @@ async function handleRequest (event) {
     await sendgrid.sendEmail(email, `${firstName} ${lastName}`, `Contact Us: ${type}: ${message.substring(0, 24)}`, toEmail, content)
   } catch (error) {
     console.debug(error)
-    event.waitUntil(logger.error(`Sendgrid error sending email\n${error}`))
+    event.waitUntil(logger.error(`SendGrid error sending email\n${error}`))
     return new Response('Please try again later', {
       status: 500
     })
