@@ -22,7 +22,6 @@ jobs:
               sentryProjectId
               sentryKey
               toEmail
-              captchaVerifyUrl
               captchaSecret
               captchaSiteKey
               sendgridKey
